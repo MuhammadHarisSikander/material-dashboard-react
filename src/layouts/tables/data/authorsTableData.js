@@ -15,6 +15,9 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import { useState, useEffect } from "react";
+import axios from 'axios';
+
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
@@ -26,7 +29,38 @@ import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 
+
 export default function data() {
+
+  // const [page, setPage] = useState(1);
+  // const [allUsers, setAllUsers] = useState([]);
+
+  // const getAllUsers = () => {
+  //   axios.get(`https://first.quantaforms.com/api/users?page=${page}`, {
+  //     headers: {
+  //       Authorization: `Bearer 9|LRwGaRwnkjh2JdRWJEEmieQrdPm3raeIynq4Cj2D`
+  //       // Authorization: `Bearer ${token}`
+  //     }
+  //   }
+  //   )
+  //     .then((response) => {
+  //       console.log("all users data", response.data);
+  //       setAllUsers(response.data.data)
+  //       // setAllUserData(response.data.meta)
+  //       // setLoading(false)
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //       alert(err)
+  //       // setLoading(false)
+  //     })
+  // }
+
+
+  // useEffect(() => {
+  //   getAllUsers()
+  // }, []);
+
   const Author = ({ image, name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDAvatar src={image} name={name} size="sm" />
@@ -56,7 +90,6 @@ export default function data() {
       { Header: "employed", accessor: "employed", align: "center" },
       { Header: "action", accessor: "action", align: "center" },
     ],
-
     rows: [
       {
         author: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,

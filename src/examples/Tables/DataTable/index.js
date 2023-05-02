@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useMemo, useEffect, useState } from "react";
 
 // prop-types is a library for typechecking of props
@@ -47,6 +32,9 @@ function DataTable({
   pagination,
   isSorted,
   noEndBorder,
+  setPage,
+  pageNumber,
+  lastPage
 }) {
   const defaultValue = entriesPerPage.defaultValue ? entriesPerPage.defaultValue : 10;
   const entries = entriesPerPage.entries
@@ -85,18 +73,6 @@ function DataTable({
 
   // Set the entries per page value based on the select value
   const setEntriesPerPage = (value) => setPageSize(value);
-
-  // Render the paginations
-  const renderPagination = pageOptions.map((option) => (
-    <MDPagination
-      item
-      key={option}
-      onClick={() => gotoPage(Number(option))}
-      active={pageIndex === option}
-    >
-      {option + 1}
-    </MDPagination>
-  ));
 
   // Handler for the input to set the pagination index
   const handleInputPagination = ({ target: { value } }) =>
@@ -149,7 +125,7 @@ function DataTable({
     <TableContainer sx={{ boxShadow: "none" }}>
       {entriesPerPage || canSearch ? (
         <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-          {entriesPerPage && (
+          {/* {entriesPerPage && (
             <MDBox display="flex" alignItems="center">
               <Autocomplete
                 disableClearable
@@ -166,7 +142,7 @@ function DataTable({
                 &nbsp;&nbsp;entries per page
               </MDTypography>
             </MDBox>
-          )}
+          )} */}
           {canSearch && (
             <MDBox width="12rem" ml="auto">
               <MDInput
@@ -227,41 +203,44 @@ function DataTable({
         alignItems={{ xs: "flex-start", sm: "center" }}
         p={!showTotalEntries && pageOptions.length === 1 ? 0 : 3}
       >
-        {showTotalEntries && (
+        {/* {showTotalEntries && (
           <MDBox mb={{ xs: 3, sm: 0 }}>
             <MDTypography variant="button" color="secondary" fontWeight="regular">
-              Showing {entriesStart} to {entriesEnd} of {rows.length} entries
+              Showing {entriesStart} to {rows.length} of {entriesEnd} entries
             </MDTypography>
           </MDBox>
-        )}
-        {pageOptions.length > 1 && (
-          <MDPagination
-            variant={pagination.variant ? pagination.variant : "gradient"}
-            color={pagination.color ? pagination.color : "info"}
-          >
-            {canPreviousPage && (
-              <MDPagination item onClick={() => previousPage()}>
+        )} */}
+        <div></div>
+        <MDPagination
+          variant={pagination.variant ? pagination.variant : "gradient"}
+          color={pagination.color ? pagination.color : "info"}
+        >
+          {
+            pageNumber != 1 ?
+              <MDPagination item onClick={() => setPage(pageNumber - 1)}>
                 <Icon sx={{ fontWeight: "bold" }}>chevron_left</Icon>
-              </MDPagination>
-            )}
-            {renderPagination.length > 6 ? (
-              <MDBox width="5rem" mx={1}>
-                <MDInput
-                  inputProps={{ type: "number", min: 1, max: customizedPageOptions.length }}
-                  value={customizedPageOptions[pageIndex]}
-                  onChange={(handleInputPagination, handleInputPaginationValue)}
-                />
-              </MDBox>
-            ) : (
-              renderPagination
-            )}
-            {canNextPage && (
-              <MDPagination item onClick={() => nextPage()}>
+              </MDPagination> :
+              null
+          }
+
+          {[...Array(lastPage)].map((page, i) => (
+            <MDPagination
+              item
+              key={i}
+              onClick={() => setPage(i + 1)}
+              active={pageIndex === i + 1}
+            >
+              {i + 1}
+            </MDPagination>
+          ))}
+          {
+            pageNumber != lastPage ?
+              <MDPagination item onClick={() => setPage(pageNumber + 1)}>
                 <Icon sx={{ fontWeight: "bold" }}>chevron_right</Icon>
               </MDPagination>
-            )}
-          </MDPagination>
-        )}
+              : null
+          }
+        </MDPagination>
       </MDBox>
     </TableContainer>
   );

@@ -47,6 +47,13 @@ import SignUp from "layouts/authentication/sign-up";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import Department from "layouts/tables/department";
+import SoftReqForm from "layouts/forms/softwareRequestForm";
+import SoftRequestChangeListing from "layouts/tables/softRequestChangeListing";
+import PerRequestForm from "layouts/tables/softRequestChangeListing/perRequestForm";
+
+
+
 
 const routes = [
   {
@@ -59,11 +66,43 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Tables",
-    key: "tables",
+    name: "User Data",
+    key: "user-data",
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
+    route: "/user-data",
     component: <Tables />,
+  },
+  {
+    type: "collapse",
+    name: "Departments",
+    key: "departments",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/departments",
+    component: <Department />,
+  },
+  {
+    type: "collapse",
+    name: "Software Request Form",
+    key: "software-request",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/software-request",
+    component: <SoftReqForm />,
+  },
+  {
+    type: "collapse",
+    name: "Form Listing",
+    key: "form-listing",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/form-listing",
+    component: <SoftRequestChangeListing />,
+  },
+  {
+    // type: "collapse",
+    // name: "Form Listing",
+    key: "form-listings",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/form-listing/:formId",
+    component: <PerRequestForm />,
   },
   {
     type: "collapse",
@@ -114,5 +153,114 @@ const routes = [
     component: <SignUp />,
   },
 ];
+
+
+// const userData = localStorage?.getItem("userData")
+// const convertInJson = JSON.parse(userData)
+// convertInJson?.data["roles.permission"].filter((data) => {
+//   // console.log("data", data);
+
+//   if (data.name == "User-view") {
+//     routes = [
+//       {
+//         type: "collapse",
+//         name: "Dashboard",
+//         key: "dashboard",
+//         icon: <Icon fontSize="small">dashboard</Icon>,
+//         route: "/dashboard",
+//         component: <Dashboard />,
+//       },
+//       {
+//         type: "collapse",
+//         name: "User Data",
+//         key: "user-data",
+//         icon: <Icon fontSize="small">table_view</Icon>,
+//         route: "/user-data",
+//         component: <Tables />,
+//       },
+//       {
+//         type: "collapse",
+//         name: "Software Request Form",
+//         key: "software-request",
+//         icon: <Icon fontSize="small">table_view</Icon>,
+//         route: "/software-request",
+//         component: <SoftReqForm />,
+//       },
+//       {
+//         // type: "collapse",
+//         // name: "Logout",
+//         key: "sign-in",
+//         icon: <Icon fontSize="small">login</Icon>,
+//         route: "/authentication/sign-in",
+//         component: <SignIn />,
+//       }
+//     ]
+
+//   }
+//   else if (data.name == "User-view" && "Department-view") {
+//     routes = [
+//       {
+//         type: "collapse",
+//         name: "Dashboard",
+//         key: "dashboard",
+//         icon: <Icon fontSize="small">dashboard</Icon>,
+//         route: "/dashboard",
+//         component: <Dashboard />,
+//       },
+//       {
+//         type: "collapse",
+//         name: "User Data",
+//         key: "user-data",
+//         icon: <Icon fontSize="small">table_view</Icon>,
+//         route: "/user-data",
+//         component: <Tables />,
+//       },
+//       {
+//         type: "collapse",
+//         name: "Departments",
+//         key: "departments",
+//         icon: <Icon fontSize="small">table_view</Icon>,
+//         route: "/departments",
+//         component: <Department />,
+//       },
+//       {
+//         type: "collapse",
+//         name: "Software Request Form",
+//         key: "software-request",
+//         icon: <Icon fontSize="small">table_view</Icon>,
+//         route: "/software-request",
+//         component: <SoftReqForm />,
+//       },
+//       {
+//         // type: "collapse",
+//         // name: "Logout",
+//         key: "sign-in",
+//         icon: <Icon fontSize="small">login</Icon>,
+//         route: "/authentication/sign-in",
+//         component: <SignIn />,
+//       }
+//     ]
+//   }
+//   return routes = [
+//     {
+//       // type: "collapse",
+//       // name: "Logout",
+//       key: "sign-in",
+//       icon: <Icon fontSize="small">login</Icon>,
+//       route: "/authentication/sign-in",
+//       component: <SignIn />,
+//     },
+//   ]
+// }
+// )
+
+
+
+
+
+
+
+
+
 
 export default routes;
